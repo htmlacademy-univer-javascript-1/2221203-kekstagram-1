@@ -16,7 +16,7 @@ const likesCount = {
 
 const commentsCount = {
   Min: 1,
-  Max: 9
+  Max: 10
 };
 
 const originalityPercentsCount = {
