@@ -1,6 +1,6 @@
-import { likesCount, commentsCount, originalityPercentsCount, getRandomPositiveInteger } from './util.js';
+import { LikeCount, CommentCount, OriginalityCount, getRandomPositiveInteger } from './util.js';
 
-const messages = ['Всё отлично!',
+const MESSAGES = ['Всё отлично!',
   'В целом всё неплохо. Но не всё.',
   'Когда вы делаете фотографию, хорошо бы убирать палец из кадра. В конце концов это просто непрофессионально.',
   'Моя бабушка случайно чихнула с фотоаппаратом в руках и у неё получилась фотография лучше.',
@@ -8,21 +8,21 @@ const messages = ['Всё отлично!',
   'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!'
 ];
 
-const names = ['Владислав', 'Даниил', 'Мария', 'Ирина', 'Олег', 'Айдимир'];
+const NAMES = ['Владислав', 'Даниил', 'Мария', 'Ирина', 'Олег', 'Айдимир'];
 
 const createComments = (id) => ({
   id,
   avatar: `img/avatar-${getRandomPositiveInteger(1, 6)}.svg`,
-  message: messages[getRandomPositiveInteger(0, messages.length - 1)],
-  name: names[getRandomPositiveInteger(0, names.length - 1)]
+  message: MESSAGES[getRandomPositiveInteger(0, MESSAGES.length - 1)],
+  name: NAMES[getRandomPositiveInteger(0, NAMES.length - 1)]
 });
 
 const createDescription = (id) => ({
   id,
   url: `photos/${id}.jpg`,
-  description: `${getRandomPositiveInteger(originalityPercentsCount.Min, originalityPercentsCount.Max)}% originality`,
-  likes: getRandomPositiveInteger(likesCount.Min, likesCount.Max),
-  comments: Array.from({length: getRandomPositiveInteger(commentsCount.Min, commentsCount.Max)}).map((value, index) => createComments(index + 1))
+  description: `${getRandomPositiveInteger(OriginalityCount.Min, OriginalityCount.Max)}% originality`,
+  likes: getRandomPositiveInteger(LikeCount.Min, LikeCount.Max),
+  comments: Array.from({length: getRandomPositiveInteger(CommentCount.Min, CommentCount.Max)}).map((value, index) => createComments(index + 1))
 });
 
 export{ createDescription };

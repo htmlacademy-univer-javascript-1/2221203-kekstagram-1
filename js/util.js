@@ -1,19 +1,19 @@
-const likesCount = {
-  Min: 15,
-  Max: 200
+const LikeCount = {
+  MIN: 15,
+  MAX: 200
 };
 
-const commentsCount = {
-  Min: 1,
-  Max: 9
+const CommentCount = {
+  MIN: 1,
+  MAX: 9
 };
 
-const originalityPercentsCount = {
-  Min: 0,
-  Max: 100
+const OriginalityCount = {
+  MIN: 0,
+  MAX: 100
 };
 
-const descriptionsCount = 25;
+const DESCRIPTIONS_COUNT = 25;
 
 const getRandomPositiveInteger = (a, b) => {
   const lower = Math.ceil(Math.min(Math.abs(a), Math.abs(b)));
@@ -25,4 +25,4 @@ const getRandomPositiveInteger = (a, b) => {
 const checkStringLength = (str, length) => str.length <= length;
 checkStringLength('Пример строки', 35);
 
-export { likesCount, commentsCount, originalityPercentsCount, getRandomPositiveInteger, descriptionsCount };
+export { LikeCount, CommentCount, OriginalityCount, getRandomPositiveInteger, DESCRIPTIONS_COUNT };
