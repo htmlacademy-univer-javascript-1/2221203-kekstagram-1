@@ -13,6 +13,6 @@ const getPictures = (miniatures) => {
   });
   pictures.append(picturesFragment);
   return pictures;
-}
+};
 
 export { getPictures };
