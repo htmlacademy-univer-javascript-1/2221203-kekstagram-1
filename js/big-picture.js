@@ -20,16 +20,6 @@ const getDescription = (photos, url) => {
       return result;
     }
   }
-  return;
-};
-
-const getComments = (photos, url, list, item) => {
-  for (let i = 0; i < photos.length; i++) {
-    if (photos[i].url === url) {
-      renderComments(photos[i].comments, list, item);
-      break;
-    }
-  }
 };
 
 const renderComments = (comment, list, item) => {
@@ -44,14 +34,23 @@ const renderComments = (comment, list, item) => {
   }
 };
 
-const closeBigPicture = (picture, body) => {
+const getComments = (photos, url, list, item) => {
+  for (let i = 0; i < photos.length; i++) {
+    if (photos[i].url === url) {
+      renderComments(photos[i].comments, list, item);
+      break;
+    }
+  }
+};
+
+const closeBigPicture = (picture, page) => {
   picture.classList.add('hidden');
-  body.classList.remove('modal-open');
+  page.classList.remove('modal-open');
 };
 
 const renderBigPicture = (element, fullScreenImg, fullScreenLikesCount, fullScreenCommentsCount, fullScreenDescription) => {
   const picture = element.querySelector('img');
-  const likes = element.querySelector('.picture__likes')
+  const likes = element.querySelector('.picture__likes');
   const comments = element.querySelector('.picture__comments');
   fullScreenImg.src = picture.src;
   fullScreenImg.srcset = picture.srcset;
@@ -63,7 +62,7 @@ const renderBigPicture = (element, fullScreenImg, fullScreenLikesCount, fullScre
 
 const openBigPicture = (picture) => {
   picture.forEach(element => {
-    element.addEventListener('click', () => {
+    element.addEventListener('click', function() {
       body.classList.add('modal-open');
       renderBigPicture(element, bigPictureImg, bigPictureLikesCount, bigPictureCommentsCount, bigPictureDescription);
       commentsCount.classList.add('hidden');
@@ -74,12 +73,12 @@ const openBigPicture = (picture) => {
   });
 
   cancelButton.forEach(element => {
-    element.addEventListener('click', () => {
+    element.addEventListener('click', function() {
       closeBigPicture(bigPicture, body);
     });
   });
 
-  document.addEventListener('keydown', (e) => {
+  document.addEventListener('keydown', function(e) {
     if (e.keyCode === 27) {
       closeBigPicture(bigPicture, body);
     }
