@@ -18,7 +18,7 @@ const COMMENTS = ['Я в своем познании настолько преи
   'Тут могла бы быть ваша реклама',
   '#яблогер',
   'Тест моего нового телефона Xiaomi Ultra Mega super 14 pro 128 GB 6G NFC 343MP'
-]
+];
 
 const createComments = (id) => ({
   id,

@@ -61,8 +61,9 @@ const renderBigPicture = (element, fullScreenImg, fullScreenLikesCount, fullScre
 };
 
 const openBigPicture = (picture) => {
-  picture.forEach(element => {
-    element.addEventListener('click', function() {
+  picture.forEach((element) => {
+    element.addEventListener('click', (e) => {
+      e.preventDefault();
       body.classList.add('modal-open');
       renderBigPicture(element, bigPictureImg, bigPictureLikesCount, bigPictureCommentsCount, bigPictureDescription);
       commentsCount.classList.add('hidden');
@@ -72,17 +73,15 @@ const openBigPicture = (picture) => {
     });
   });
 
-  cancelButton.forEach(element => {
-    element.addEventListener('click', function() {
-      closeBigPicture(bigPicture, body);
-    });
+  cancelButton.forEach((element) => {
+    element.addEventListener('click', closeBigPicture(bigPicture, body));
   });
 
-  document.addEventListener('keydown', function(e) {
+  document.addEventListener('keydown', (e) => {
     if (e.keyCode === 27) {
       closeBigPicture(bigPicture, body);
     }
-  })
+  });
 };
 
 export {openBigPicture};
