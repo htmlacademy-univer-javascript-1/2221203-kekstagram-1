@@ -7,6 +7,7 @@ const getPictures = (miniatures) => {
     const picturesElement = picturesTemplate.cloneNode(true);
     const picturesElementInfo = picturesElement.querySelector('.picture__info');
     picturesElement.querySelector('.picture__img').src = url;
+    picturesElement.querySelector('.picture__img').srcset = url;
     picturesElementInfo.querySelector('.picture__likes').textContent = likes;
     picturesElementInfo.querySelector('.picture__comments').textContent = comments.length;
     picturesFragment.append(picturesElement);
