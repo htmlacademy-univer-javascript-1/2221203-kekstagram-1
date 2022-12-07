@@ -35,6 +35,6 @@ const createDescription = (id) => ({
   comments: Array.from({length: getRandomPositiveInteger(CommentCount.MIN, CommentCount.MAX)}).map((value, index) => createComments(index + 1))
 });
 
-const getPhotos = Array.from({length: DESCRIPTIONS_COUNT}).map((value, index) => createDescription(index + 1));
+const getPhotos = () => Array.from({length: DESCRIPTIONS_COUNT}).map((value, index) => createDescription(index + 1));
 
 export{ getPhotos };
