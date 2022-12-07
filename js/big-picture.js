@@ -78,7 +78,7 @@ const renderBigPicture = (picture) => {
     commentsList.innerHTML = '';
     getComments(thumbnails, bigPictureImg.srcset, commentsList, commentsItem);
   });
-}
+};
 
 const openBigPicture = () => {
   const pictures = document.querySelectorAll('.picture');
