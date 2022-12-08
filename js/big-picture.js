@@ -36,13 +36,8 @@ const renderComments = (comment, list, item) => {
   }
 };
 
-const getComments = (photos, url, list, item) => {
-  for (let i = 0; i < photos.length; i++) {
-    if (photos[i].url === url) {
-      renderComments(photos[i].comments, list, item);
-      break;
-    }
-  }
+const getComments = (photos, id, list, item) => {
+  renderComments(photos[id - 1].comments, list, item);
 };
 
 const closeBigPicture = (picture, page) => {
@@ -69,6 +64,7 @@ const getPictureData = (element, fullScreenImg, fullScreenLikesCount, fullScreen
 };
 
 const renderBigPicture = (picture) => {
+  const pictureId = picture.querySelector('.picture__id').textContent;
   picture.addEventListener('click', (e) => {
     e.preventDefault();
     body.classList.add('modal-open');
@@ -76,7 +72,7 @@ const renderBigPicture = (picture) => {
     commentsCount.classList.add('hidden');
     commentsLoader.classList.add('hidden');
     commentsList.innerHTML = '';
-    getComments(thumbnails, bigPictureImg.srcset, commentsList, commentsItem);
+    getComments(thumbnails, pictureId, commentsList, commentsItem);
   });
 };
 
@@ -90,6 +86,7 @@ const openBigPicture = () => {
   document.addEventListener('keydown', closeBigPictureByEsc);
 };
 
+console.log(thumbnails);
 getPictures(thumbnails);
 
 export {openBigPicture};
