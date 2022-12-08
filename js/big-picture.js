@@ -86,7 +86,6 @@ const openBigPicture = () => {
   document.addEventListener('keydown', closeBigPictureByEsc);
 };
 
-console.log(thumbnails);
 getPictures(thumbnails);
 
 export {openBigPicture};
