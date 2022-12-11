@@ -14,42 +14,34 @@ const commentsLoader = document.querySelector('.comments-loader');
 const body = document.querySelector('body');
 const thumbnails = getPhotos();
 
-const getDescription = (photos, url) => {
-  let result = null;
-  for (let i = 0; i < photos.length; i++) {
-    if (photos[i].url === url) {
-      result = photos[i].description;
-      return result;
-    }
+const renderComments = (comments, list, item) => {
+  for (let i = 0; i < comments.length; i++) {
+    const comment = item.cloneNode(true);
+    const commentsImg = comment.querySelector('.social__picture');
+    const commentsText = comment.querySelector('.social__text');
+    commentsImg.src = comments[i].avatar;
+    commentsImg.alt = comments[i].name;
+    commentsText.textContent = comments[i].message;
+    list.appendChild(comment);
   }
 };
 
-const renderComments = (comment, list, item) => {
-  for (let i = 0; i < comment.length; i++) {
-    const comments = item.cloneNode(true);
-    const commentsImg = comments.querySelector('.social__picture');
-    const commentsText = comments.querySelector('.social__text');
-    commentsImg.src = comment[i].avatar;
-    commentsImg.alt = comment[i].name;
-    commentsText.textContent = comment[i].message;
-    list.appendChild(comments);
+const closeBigPicture = () => {
+  bigPicture.classList.add('hidden');
+  body.classList.remove('modal-open');
+  closeButton.removeEventListener('click', onPictureCancelButton);
+  document.removeEventListener('keydown', onPictureEscKeydown);
+};
+
+const onPictureEscKeydown = (evt) => {
+  if (evt.key === "Escape") {
+    closeBigPicture();
   }
 };
 
-const getComments = (photos, id, list, item) => {
-  renderComments(photos[id - 1].comments, list, item);
-};
-
-const closeBigPicture = (picture, page) => {
-  picture.classList.add('hidden');
-  page.classList.remove('modal-open');
-};
-
-const closeBigPictureByEsc = (evt) => {
-  if (evt.keyCode === 27) {
-    closeBigPicture(bigPicture, body);
-  }
-};
+const onPictureCancelButton = () => {
+  closeBigPicture();
+}
 
 const getPictureData = (element, fullScreenImg, fullScreenLikesCount, fullScreenCommentsCount, fullScreenDescription) => {
   const picture = element.querySelector('img');
@@ -59,33 +51,27 @@ const getPictureData = (element, fullScreenImg, fullScreenLikesCount, fullScreen
   fullScreenImg.srcset = picture.srcset;
   fullScreenLikesCount.textContent = likes.textContent;
   fullScreenCommentsCount.textContent = comments.textContent;
-  fullScreenDescription.textContent = getDescription(thumbnails, bigPictureImg.srcset);
+  fullScreenDescription.textContent = thumbnails[element.dataset.id - 1].description;
   bigPicture.classList.remove('hidden');
 };
 
-const renderBigPicture = (picture) => {
-  const pictureId = picture.querySelector('.picture__id').textContent;
-  picture.addEventListener('click', (e) => {
-    e.preventDefault();
-    body.classList.add('modal-open');
-    getPictureData(picture, bigPictureImg, bigPictureLikesCount, bigPictureCommentsCount, bigPictureDescription);
-    commentsCount.classList.add('hidden');
-    commentsLoader.classList.add('hidden');
-    commentsList.innerHTML = '';
-    getComments(thumbnails, pictureId, commentsList, commentsItem);
-  });
+const onClickBigPicture = (picture) => {
+  body.classList.add('modal-open');
+  getPictureData(picture, bigPictureImg, bigPictureLikesCount, bigPictureCommentsCount, bigPictureDescription);
+  commentsCount.classList.add('hidden');
+  commentsLoader.classList.add('hidden');
+  commentsList.innerHTML = '';
+  renderComments(thumbnails[picture.dataset.id - 1].comments, commentsList, commentsItem);
+  cancelButton.addEventListener('click', onPictureCancelButton);
+  document.addEventListener('keydown', onPictureEscKeydown);
 };
 
 const openBigPicture = () => {
   const pictures = document.querySelectorAll('.picture');
   pictures.forEach((picture) => {
-    renderBigPicture(picture);
+    picture.addEventListener('click', () => onClickBigPicture(picture));
   });
-
-  cancelButton.addEventListener('click', () => closeBigPicture(bigPicture, body));
-  document.addEventListener('keydown', closeBigPictureByEsc);
 };
 
 getPictures(thumbnails);
-
-export {openBigPicture};
+export { openBigPicture };
