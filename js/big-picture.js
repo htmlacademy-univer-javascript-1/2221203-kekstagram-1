@@ -29,19 +29,19 @@ const renderComments = (comments, list, item) => {
 const closeBigPicture = () => {
   bigPicture.classList.add('hidden');
   body.classList.remove('modal-open');
-  closeButton.removeEventListener('click', onPictureCancelButton);
-  document.removeEventListener('keydown', onPictureEscKeydown);
 };
 
 const onPictureEscKeydown = (evt) => {
-  if (evt.key === "Escape") {
+  if (evt.key === 'Escape') {
     closeBigPicture();
+    document.removeEventListener('keydown', onPictureEscKeydown);
   }
 };
 
 const onPictureCancelButton = () => {
   closeBigPicture();
-}
+  cancelButton.removeEventListener('click', onPictureCancelButton);
+};
 
 const getPictureData = (element, fullScreenImg, fullScreenLikesCount, fullScreenCommentsCount, fullScreenDescription) => {
   const picture = element.querySelector('img');
