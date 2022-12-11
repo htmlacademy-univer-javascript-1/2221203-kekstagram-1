@@ -61,7 +61,9 @@ const onClickBigPicture = (picture) => {
   commentsCount.classList.add('hidden');
   commentsLoader.classList.add('hidden');
   commentsList.innerHTML = '';
-  renderComments(thumbnails[picture.dataset.id - 1].comments, commentsList, commentsItem);
+  if (thumbnails[picture.dataset.id - 1].comments.length != 0) {
+    renderComments(thumbnails[picture.dataset.id - 1].comments, commentsList, commentsItem);
+  }
   cancelButton.addEventListener('click', onPictureCancelButton);
   document.addEventListener('keydown', onPictureEscKeydown);
 };
