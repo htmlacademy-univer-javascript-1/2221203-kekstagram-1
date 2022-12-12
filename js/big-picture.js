@@ -33,16 +33,6 @@ const closeBigPicture = () => {
   cancelButton.removeEventListener('click', onPictureCancelButton);
 };
 
-const onPictureEscKeydown = (evt) => {
-  if (evt.key === 'Escape') {
-    closeBigPicture();
-  }
-};
-
-const onPictureCancelButton = () => {
-  closeBigPicture();
-};
-
 const getPictureData = (element, fullScreenImg, fullScreenLikesCount, fullScreenCommentsCount, fullScreenDescription) => {
   const picture = element.querySelector('img');
   const likes = element.querySelector('.picture__likes');
@@ -53,6 +43,16 @@ const getPictureData = (element, fullScreenImg, fullScreenLikesCount, fullScreen
   fullScreenCommentsCount.textContent = comments.textContent;
   fullScreenDescription.textContent = thumbnails[element.dataset.id - 1].description;
   bigPicture.classList.remove('hidden');
+};
+
+const onPictureEscKeydown = (evt) => {
+  if (evt.key === 'Escape') {
+    closeBigPicture();
+  }
+};
+
+const onPictureCancelButton = () => {
+  closeBigPicture();
 };
 
 const renderBigPicture = (picture) => {
