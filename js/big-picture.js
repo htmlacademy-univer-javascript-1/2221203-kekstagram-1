@@ -29,20 +29,18 @@ const renderComments = (comments, list, item) => {
 const closeBigPicture = () => {
   bigPicture.classList.add('hidden');
   body.classList.remove('modal-open');
+  document.removeEventListener('keydown', onPictureEscKeydown);
+  cancelButton.removeEventListener('click', onPictureCancelButton);
 };
 
 const onPictureEscKeydown = (evt) => {
   if (evt.key === 'Escape') {
     closeBigPicture();
-    document.removeEventListener('keydown', onPictureEscKeydown);
-    cancelButton.removeEventListener('click', onPictureCancelButton);
   }
 };
 
 const onPictureCancelButton = () => {
   closeBigPicture();
-  document.removeEventListener('keydown', onPictureEscKeydown);
-  cancelButton.removeEventListener('click', onPictureCancelButton);
 };
 
 const getPictureData = (element, fullScreenImg, fullScreenLikesCount, fullScreenCommentsCount, fullScreenDescription) => {
@@ -62,7 +60,7 @@ const renderBigPicture = (picture) => {
   getPictureData(picture, bigPictureImg, bigPictureLikesCount, bigPictureCommentsCount, bigPictureDescription);
   commentsList.innerHTML = '';
   if (thumbnails[picture.dataset.id - 1].comments.length === 0) {
-    commentsCount.classList.textContent == 'Нет комментариев'
+    commentsCount.textContent === 'Нет комментариев';
     commentsLoader.classList.add('hidden');
     return;
   }
