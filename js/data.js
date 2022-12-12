@@ -1,4 +1,4 @@
-import { LikeCount, CommentCount, OriginalityCount, getRandomPositiveInteger } from './util.js';
+import { LikeCount, CommentCount, OriginalityCount, getRandomPositiveInteger, DESCRIPTIONS_COUNT } from './util.js';
 
 const MESSAGES = ['Всё отлично!',
   'В целом всё неплохо. Но не всё.',
@@ -20,9 +20,11 @@ const createComments = (id) => ({
 const createDescription = (id) => ({
   id,
   url: `photos/${id}.jpg`,
-  description: `${getRandomPositiveInteger(OriginalityCount.Min, OriginalityCount.Max)}% originality`,
-  likes: getRandomPositiveInteger(LikeCount.Min, LikeCount.Max),
-  comments: Array.from({length: getRandomPositiveInteger(CommentCount.Min, CommentCount.Max)}).map((value, index) => createComments(index + 1))
+  description: `${getRandomPositiveInteger(OriginalityCount.MIN, OriginalityCount.MAX)}% originality`,
+  likes: getRandomPositiveInteger(LikeCount.MIN, LikeCount.MAX),
+  comments: Array.from({length: getRandomPositiveInteger(CommentCount.MIN, CommentCount.MAX)}).map((value, index) => createComments(index + 1))
 });
 
-export{ createDescription };
+const getPhotos = () => Array.from({length: DESCRIPTIONS_COUNT}).map((value, index) => createDescription(index + 1));
+
+export{ getPhotos };

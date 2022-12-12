@@ -1,4 +1,5 @@
-import { createDescription } from './data.js';
-import { descriptionsCount } from './util.js';
+import { getPhotos } from './data.js';
+import { getPictures} from './miniatures.js';
 
-Array.from({length: descriptionsCount}).map((value, index) => createDescription(index + 1));
+const miniatures = getPhotos();
+getPictures(miniatures);
