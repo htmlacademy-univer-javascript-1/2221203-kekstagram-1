@@ -26,6 +26,13 @@ const renderComments = (comments, list, item) => {
   }
 };
 
+const closeBigPicture = () => {
+  bigPicture.classList.add('hidden');
+  body.classList.remove('modal-open');
+  document.removeEventListener('keydown', onPictureEscKeydown);
+  cancelButton.removeEventListener('click', onPictureCancelButton);
+};
+
 const onPictureEscKeydown = (evt) => {
   if (evt.key === 'Escape') {
     closeBigPicture();
@@ -34,13 +41,6 @@ const onPictureEscKeydown = (evt) => {
 
 const onPictureCancelButton = () => {
   closeBigPicture();
-};
-
-const closeBigPicture = () => {
-  bigPicture.classList.add('hidden');
-  body.classList.remove('modal-open');
-  document.removeEventListener('keydown', onPictureEscKeydown);
-  cancelButton.removeEventListener('click', onPictureCancelButton);
 };
 
 const getPictureData = (element, fullScreenImg, fullScreenLikesCount, fullScreenCommentsCount, fullScreenDescription) => {
