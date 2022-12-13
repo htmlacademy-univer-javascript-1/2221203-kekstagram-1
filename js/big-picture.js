@@ -45,13 +45,13 @@ const getPictureData = (element, fullScreenImg, fullScreenLikesCount, fullScreen
   bigPicture.classList.remove('hidden');
 };
 
-const onPictureEscKeydown = (evt) => {
+function onPictureEscKeydown(evt) {
   if (evt.key === 'Escape') {
     closeBigPicture();
   }
 };
 
-const onPictureCancelButton = () => {
+function onPictureCancelButton() {
   closeBigPicture();
 };
 
