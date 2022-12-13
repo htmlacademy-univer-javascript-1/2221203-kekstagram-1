@@ -49,11 +49,11 @@ function onPictureEscKeydown(evt) {
   if (evt.key === 'Escape') {
     closeBigPicture();
   }
-};
+}
 
 function onPictureCancelButton() {
   closeBigPicture();
-};
+}
 
 const renderBigPicture = (picture) => {
   body.classList.add('modal-open');
