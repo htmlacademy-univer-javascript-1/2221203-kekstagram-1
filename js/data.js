@@ -1,4 +1,4 @@
-import { LikeCount, CommentCount, OriginalityCount, getRandomPositiveInteger, DESCRIPTIONS_COUNT } from './util.js';
+import { LikeCount, CommentCount, getRandomPositiveInteger, DESCRIPTIONS_COUNT } from './util.js';
 
 const MESSAGES = ['Всё отлично!',
   'В целом всё неплохо. Но не всё.',
@@ -10,6 +10,16 @@ const MESSAGES = ['Всё отлично!',
 
 const NAMES = ['Владислав', 'Даниил', 'Мария', 'Ирина', 'Олег', 'Айдимир'];
 
+const COMMENTS = ['Я в своем познании настолько преисполнился',
+  'Кто любит маму лайк!',
+  'Я безумно хочу пиццу',
+  'Восстанавливаю актив',
+  'Тут должна была быть подпись',
+  'Тут могла бы быть ваша реклама',
+  '#яблогер',
+  'Тест моего нового телефона Xiaomi Ultra Mega super 14 pro 128 GB 6G NFC 343MP'
+];
+
 const createComments = (id) => ({
   id,
   avatar: `img/avatar-${getRandomPositiveInteger(1, 6)}.svg`,
@@ -20,7 +30,7 @@ const createComments = (id) => ({
 const createDescription = (id) => ({
   id,
   url: `photos/${id}.jpg`,
-  description: `${getRandomPositiveInteger(OriginalityCount.MIN, OriginalityCount.MAX)}% originality`,
+  description: COMMENTS[getRandomPositiveInteger(0, COMMENTS.length - 1)],
   likes: getRandomPositiveInteger(LikeCount.MIN, LikeCount.MAX),
   comments: Array.from({length: getRandomPositiveInteger(CommentCount.MIN, CommentCount.MAX)}).map((value, index) => createComments(index + 1))
 });

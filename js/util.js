@@ -8,11 +8,6 @@ const CommentCount = {
   MAX: 9
 };
 
-const OriginalityCount = {
-  MIN: 0,
-  MAX: 100
-};
-
 const DESCRIPTIONS_COUNT = 25;
 
 const getRandomPositiveInteger = (a, b) => {
@@ -25,4 +20,4 @@ const getRandomPositiveInteger = (a, b) => {
 const checkStringLength = (str, length) => str.length <= length;
 checkStringLength('Пример строки', 35);
 
-export { LikeCount, CommentCount, OriginalityCount, getRandomPositiveInteger, DESCRIPTIONS_COUNT };
+export { LikeCount, CommentCount, getRandomPositiveInteger, DESCRIPTIONS_COUNT };
