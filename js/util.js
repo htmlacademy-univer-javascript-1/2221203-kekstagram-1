@@ -20,4 +20,6 @@ const getRandomPositiveInteger = (a, b) => {
 const checkStringLength = (str, length) => str.length <= length;
 checkStringLength('Пример строки', 35);
 
-export { LikeCount, CommentCount, getRandomPositiveInteger, DESCRIPTIONS_COUNT };
+const isEscKey = (evt) => evt.key === 'Escape';
+
+export { LikeCount, CommentCount, getRandomPositiveInteger, DESCRIPTIONS_COUNT, isEscKey, checkStringLength };

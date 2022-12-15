@@ -1,5 +1,5 @@
-import { getPhotos } from './data.js';
-import { getPictures} from './miniatures.js';
+import { openBigPicture } from "./big-picture.js";
+import { renderUploadForm } from "./user-form.js";
 
-const miniatures = getPhotos();
-getPictures(miniatures);
+renderUploadForm();
+openBigPicture();
