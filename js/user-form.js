@@ -18,9 +18,9 @@ const closeOverlay = () => {
 
 function onOverlayEscKeydown(evt) {
   if (isEscKey(evt)) {
-      closeOverlay();
+    closeOverlay();
   }
-};
+}
 
 const onOverlayCloseButton = () => {
   closeOverlay();
@@ -40,8 +40,8 @@ const renderUploadForm = () => {
   pristine.addValidator(hashtags, hashtagsHandler, error);
   pristine.addValidator(comments, commentHandler, error);
   form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      pristine.validate();
+    e.preventDefault();
+    pristine.validate();
   });
 };
 

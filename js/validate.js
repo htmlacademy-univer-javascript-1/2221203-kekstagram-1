@@ -13,28 +13,28 @@ const pristine = new Pristine(form, {
 let errorMessage = '';
 
 const makeUniqueHashtags = (hashtag) => {
-const uniq = new Set(hashtag);
-return hashtag.length === uniq.size;
+  const uniq = new Set(hashtag);
+  return hashtag.length === uniq.size;
 };
 
 const error = () => errorMessage;
 
 const hashtagsHandler = (input) => {
-errorMessage = '';
+  errorMessage = '';
 
-const inputText = input.toLowerCase().trim();
+  const inputText = input.toLowerCase().trim();
 
-if (!inputText) {
+  if (!inputText) {
     return true;
-}
+  }
 
-const inputHashtags = inputText.split(/\s+/);
+  const inputHashtags = inputText.split(/\s+/);
 
-if(inputHashtags.length === 0) {
+  if(inputHashtags.length === 0) {
     return true;
-}
+  }
 
-const rules = [
+  const rules = [
     {
       check: inputHashtags.some((item) => item.indexOf('#', 1) >= 1),
       error: ErrorMessage.SPACE_MISSES,
@@ -64,9 +64,9 @@ const rules = [
       check: !makeUniqueHashtags(inputHashtags),
       error: ErrorMessage.REPEAT_HASHTAG,
     },
-];
+  ];
 
-return rules.every((rule) => {
+  return rules.every((rule) => {
     const isInvalid = rule.check;
     if(isInvalid) {
       errorMessage = rule.error;
