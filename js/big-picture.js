@@ -16,7 +16,6 @@ const thumbnails = getPhotos();
 
 let actualComments = [];
 let defaultCountComments = DEFAULT_COUNT_COMENTS;
-let stepCountComments = STEP_COUNT_COMMENTS;
 
 const commentTemplate = ({avatar, message, name}) => `<li class="social__comment">
   <img class="social__picture" src="${avatar}" alt="${name}" width="35" height="35">
@@ -43,7 +42,7 @@ const renderComments = () => {
 };
 
 function onCommentsLoaderBtn() {
-  defaultCountComments += stepCountComments;
+  defaultCountComments += STEP_COUNT_COMMENTS;
   renderComments();
 }
 
