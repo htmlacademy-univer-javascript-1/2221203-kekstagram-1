@@ -12,6 +12,9 @@ const MaxHashtag = {
   COUNT: 5
 };
 
+const DEFAULT_COUNT_COMENTS = 5;
+const STEP_COUNT_COMMENTS = 5;
+
 const ErrorMessage = {
   SPACE_MISSES: 'Хэш-теги должны разделяться пробелами',
   SHARP_START: 'Хэш-тег должен начинаться с символа # (решётка)',
@@ -22,4 +25,4 @@ const ErrorMessage = {
   COMMENT_MAX_LENGTH: `Максимальная длина комментария не может превышать ${MAX_COMMENT_LENGTH} символов`
 };
 
-export{MAX_COUNT_PHOTOS, CountLike, MAX_COMMENT_LENGTH, MaxHashtag, ErrorMessage};
+export{MAX_COUNT_PHOTOS, CountLike, MAX_COMMENT_LENGTH, MaxHashtag, ErrorMessage, STEP_COUNT_COMMENTS, DEFAULT_COUNT_COMENTS};
