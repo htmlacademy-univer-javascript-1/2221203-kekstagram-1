@@ -1,7 +1,7 @@
-import { Effects, SCALE_STEP, ScaleRange } from "./consts.js";
+import { Effects, SCALE_STEP, ScaleRange } from './consts.js';
 
 const slider = document.querySelector('.effect-level__slider');
-const sliderWrapper = document.querySelector('.img-upload__effect-level')
+const sliderWrapper = document.querySelector('.img-upload__effect-level');
 const imageForChange = document.querySelector('.img-upload__preview').querySelector('img');
 const sliderValue = document.querySelector('.effect-level__value');
 const scaleButtonBigger = document.querySelector('.scale__control--bigger');
@@ -25,8 +25,8 @@ const changeScale = (val) => {
 };
 
 const onScaleButtonClick = () => {
-  scaleButtonBigger.addEventListener('click', () => changeScale(1))
-  scaleButtonSmaller.addEventListener('click', () => changeScale(-1))
+  scaleButtonBigger.addEventListener('click', () => changeScale(1));
+  scaleButtonSmaller.addEventListener('click', () => changeScale(-1));
 };
 
 const createSlider = () => {
@@ -58,11 +58,11 @@ const changeEffect = (evt) => {
   imageForChange.removeAttribute('class');
   imageForChange.removeAttribute('style');
 
-  imageForChange.classList.add(`effects__preview--${effect}`)
+  imageForChange.classList.add(`effects__preview--${effect}`);
   slider.noUiSlider.updateOptions(Effects[effect].options);
   slider.noUiSlider.on('update', () => {
     sliderValue.value = slider.noUiSlider.get();
-    imageForChange.style.filter = Effects[effect].filter + `(${sliderValue.value}${Effects[effect].unit})`
+    imageForChange.style.filter = `${Effects[effect].filter}(${sliderValue.value}${Effects[effect].unit})`;
   });
 };
 
