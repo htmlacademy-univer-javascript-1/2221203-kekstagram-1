@@ -1,3 +1,4 @@
+import { changeEffect, createSlider, onScaleButtonClick } from './effects.js';
 import { isEscKey } from './util.js';
 import { changeDisableStateSubmitBtn, commentHandler, hashtagsHandler, pristine, error } from './validate.js';
 
@@ -8,6 +9,8 @@ const body = document.querySelector('body');
 const form = document.querySelector('.img-upload__form');
 const comments = form.querySelector('.text__description');
 const hashtags = form.querySelector('.text__hashtags');
+const uploadEffects = document.querySelector('.img-upload__effects');
+const imageForChange = document.querySelector('.img-upload__preview').querySelector('img');
 
 const closeOverlay = () => {
   uploadOverlay.classList.add('hidden');
@@ -27,10 +30,15 @@ const onOverlayCloseButton = () => {
 };
 
 const onImgUploadFieldChange = () => {
+  imageForChange.removeAttribute('class');
+  imageForChange.removeAttribute('style');
   uploadOverlay.classList.remove('hidden');
   body.classList.add('modal-open');
   document.addEventListener('keydown', onOverlayEscKeydown);
   overlayCloseButton.addEventListener('click', onOverlayCloseButton);
+  createSlider();
+  uploadEffects.addEventListener('change', changeEffect);
+  onScaleButtonClick();
 };
 
 const renderUploadForm = () => {
