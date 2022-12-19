@@ -52,4 +52,6 @@ const ErrorMessage = {
   COMMENT_MAX_LENGTH: `Максимальная длина комментария не может превышать ${MAX_COMMENT_LENGTH} символов`
 };
 
-export{MAX_COUNT_PHOTOS, CountLike, MAX_COMMENT_LENGTH, MaxHashtag, ErrorMessage, STEP_COUNT_COMMENTS, DEFAULT_COUNT_COMENTS, Effects, SCALE_STEP, ScaleRange};
+const ALERT_SHOW_TIME = 500;
+
+export{ALERT_SHOW_TIME, MAX_COUNT_PHOTOS, CountLike, MAX_COMMENT_LENGTH, MaxHashtag, ErrorMessage, STEP_COUNT_COMMENTS, DEFAULT_COUNT_COMENTS, Effects, SCALE_STEP, ScaleRange};

@@ -1,6 +1,8 @@
 import { changeEffect, createSlider, onScaleButtonClick } from './effects.js';
 import { isEscKey } from './util.js';
 import { changeDisableStateSubmitBtn, commentHandler, hashtagsHandler, pristine, error } from './validate.js';
+import { sendData } from './api.js';
+import { showMessage } from './message.js';
 
 const file = document.querySelector('#upload-file');
 const uploadOverlay = document.querySelector('.img-upload__overlay');
@@ -11,6 +13,7 @@ const comments = form.querySelector('.text__description');
 const hashtags = form.querySelector('.text__hashtags');
 const uploadEffects = document.querySelector('.img-upload__effects');
 const imageForChange = document.querySelector('.img-upload__preview').querySelector('img');
+const submitButton = document.querySelector('.img-upload__submit');
 
 const closeOverlay = () => {
   uploadOverlay.classList.add('hidden');
@@ -41,6 +44,17 @@ const onImgUploadFieldChange = () => {
   onScaleButtonClick();
 };
 
+const blockSubmitButton = () => {
+  submitButton.disabled = true;
+  submitButton.textContent = 'Публикую...';
+};
+
+
+const unblockSubmitButton = () => {
+  submitButton.disabled = false;
+  submitButton.textContent = 'Опубликовать';
+};
+
 const renderUploadForm = () => {
   file.addEventListener('change', onImgUploadFieldChange);
   hashtags.addEventListener('input', changeDisableStateSubmitBtn);
@@ -49,7 +63,21 @@ const renderUploadForm = () => {
   pristine.addValidator(comments, commentHandler, error);
   form.addEventListener('submit', (e) => {
     e.preventDefault();
-    pristine.validate();
+    if (pristine.validate()) {
+      blockSubmitButton();
+      sendData(() => {
+        showMessage();
+        unblockSubmitButton();
+        closeOverlay();
+      },
+      () => {
+        showMessage(true);
+        unblockSubmitButton();
+        closeOverlay();
+      },
+      new FormData(e.target),
+      );
+    }
   });
 };
 
