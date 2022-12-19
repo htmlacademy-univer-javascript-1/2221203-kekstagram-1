@@ -1,4 +1,4 @@
-import { ALERT_SHOW_TIME } from "./consts.js";
+import { ALERT_SHOW_TIME } from './consts.js';
 
 const LikeCount = {
   MIN: 15,
