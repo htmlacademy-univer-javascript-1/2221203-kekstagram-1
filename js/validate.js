@@ -1,30 +1,31 @@
 import { checkStringLength } from './util.js';
-import { ErrorMessage, MaxHashtag, MAX_COMMENT_LENGTH } from './consts.js';
+import { MAX_COMMENT_LENGTH, MaxHashtag, ErrorMessage } from './consts.js';
 
-const submitButton = document.querySelector('.img-upload__submit');
+
 const form = document.querySelector('.img-upload__form');
+
 
 const pristine = new Pristine(form, {
   classTo: 'img-upload__field-wrapper',
   errorTextParent: 'img-upload__field-wrapper',
-  errorTextClass: 'img-upload__error-text',
+  errorTextClass: 'img-upload__error-text'
 });
-
-let errorMessage = '';
 
 const makeUniqueHashtags = (hashtag) => {
   const uniq = new Set(hashtag);
   return hashtag.length === uniq.size;
 };
 
+let errorMessage = '';
+
 const error = () => errorMessage;
 
-const hashtagsHandler = (input) => {
+const onHashtagsInput = (string) => {
   errorMessage = '';
 
-  const inputText = input.toLowerCase().trim();
+  const inputText = string.toLowerCase().trim();
 
-  if (!inputText) {
+  if(!inputText) {
     return true;
   }
 
@@ -37,7 +38,7 @@ const hashtagsHandler = (input) => {
   const rules = [
     {
       check: inputHashtags.some((item) => item.indexOf('#', 1) >= 1),
-      error: ErrorMessage.SPACE_MISSES,
+      error: ErrorMessage.SPACE_SEPARATION,
     },
 
     {
@@ -47,7 +48,7 @@ const hashtagsHandler = (input) => {
 
     {
       check: inputHashtags.some((item) => item[0] !== '#'),
-      error: ErrorMessage.SHARP_START,
+      error: ErrorMessage.START,
     },
 
     {
@@ -62,7 +63,7 @@ const hashtagsHandler = (input) => {
 
     {
       check: !makeUniqueHashtags(inputHashtags),
-      error: ErrorMessage.REPEAT_HASHTAG,
+      error: ErrorMessage.REPEAT_ERROR,
     },
   ];
 
@@ -75,7 +76,7 @@ const hashtagsHandler = (input) => {
   });
 };
 
-const commentHandler = (string) => {
+const onCommentInput = (string) => {
   errorMessage = '';
 
   const inputText = string.trim();
@@ -96,8 +97,4 @@ const commentHandler = (string) => {
   return !isInvalid;
 };
 
-const changeDisableStateSubmitBtn = () => {
-  submitButton.disabled = !pristine.validate();
-};
-
-export {changeDisableStateSubmitBtn , commentHandler, hashtagsHandler, pristine, error};
+export { onCommentInput, onHashtagsInput, pristine, error };
