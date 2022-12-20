@@ -1,9 +1,6 @@
 const MAX_COUNT_PHOTOS = 25;
 
-const CountLike = {
-  MIN: 15,
-  MAX: 200
-};
+const MAX_COUNT_RANDOM_PHOTO = 10;
 
 const MAX_COMMENT_LENGTH = 140;
 
@@ -52,6 +49,12 @@ const ErrorMessage = {
   COMMENT_MAX_LENGTH: `Максимальная длина комментария не может превышать ${MAX_COMMENT_LENGTH} символов`
 };
 
+const Filter = {
+  DEFAULT: 'filter-default',
+  RANDOM: 'filter-random',
+  DISCUSSED: 'filter-discussed',
+};
+
 const ALERT_SHOW_TIME = 500;
 
-export{ALERT_SHOW_TIME, MAX_COUNT_PHOTOS, CountLike, MAX_COMMENT_LENGTH, MaxHashtag, ErrorMessage, STEP_COUNT_COMMENTS, DEFAULT_COUNT_COMENTS, Effects, SCALE_STEP, ScaleRange};
+export{MAX_COUNT_RANDOM_PHOTO, Filter, ALERT_SHOW_TIME, MAX_COUNT_PHOTOS, MAX_COMMENT_LENGTH, MaxHashtag, ErrorMessage, STEP_COUNT_COMMENTS, DEFAULT_COUNT_COMENTS, Effects, SCALE_STEP, ScaleRange};

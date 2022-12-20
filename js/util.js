@@ -1,17 +1,5 @@
 import { ALERT_SHOW_TIME } from './consts.js';
 
-const LikeCount = {
-  MIN: 15,
-  MAX: 200
-};
-
-const CommentCount = {
-  MIN: 1,
-  MAX: 9
-};
-
-const DESCRIPTIONS_COUNT = 25;
-
 const getRandomPositiveInteger = (a, b) => {
   const lower = Math.ceil(Math.min(Math.abs(a), Math.abs(b)));
   const upper = Math.floor(Math.max(Math.abs(a), Math.abs(b)));
@@ -43,4 +31,16 @@ const showAlert = () => {
   }, ALERT_SHOW_TIME);
 };
 
-export { LikeCount, CommentCount, getRandomPositiveInteger, DESCRIPTIONS_COUNT, isEscKey, checkStringLength, showAlert };
+const shuffleArray = (arr) => arr.map((a) => [Math.random(), a]).sort((a, b) => a[0] - b[0]).map((a) => a[1]);
+
+const comparePicturesByComments = (pictureA, pictureB) => pictureB.comments.length - pictureA.comments.length;
+
+function debounce (callback, timeoutDelay = 500) {
+  let timeoutId;
+  return (...rest) => {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => callback.apply(this, rest), timeoutDelay);
+  };
+}
+
+export { getRandomPositiveInteger, isEscKey, checkStringLength, showAlert, debounce, comparePicturesByComments, shuffleArray };
